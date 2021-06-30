@@ -1,6 +1,7 @@
 body {
     background: linear-gradient(180deg, rgba(66,148,136,1) 0%, rgba(66,148,136,1) 15%, rgba(219,219,212,1) 15%);
     height: 100vh;
+    overflow: hidden;
 }
 
 .app-container {
@@ -8,39 +9,80 @@ body {
     margin-top: 24px;
 }
 
+i {
+    cursor: pointer;
+}
+
 main {
-    border: 1px solid black;
     height: 700px;
     background-color: #eaeaea;
     display: flex;
     flex-direction: column;
+
 }
 
 aside {
-    border: 1px solid black;
-    height: 700px;
     background-color: #eaeaea;
+
 }
 
 .my-profile, .interlocutor-profile {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     height: 80px;
     width: 100%;
-    border: 1px solid black;
 }
 
 .avatar-picture {
     width: 50px;
+    height: 50px;
     border-radius: 50%;
+    margin: 0 12px;
 }
 
+.pic-and-name {
+    display: flex;
+}
+
+.top-bar-icons {
+    display: flex;
+    justify-content: space-between;
+    width: 80px;
+    color: #b5b5b5;
+    font-size: 20px;
+    margin-right: 24px;
+}
 
 /* ASIDE */
+.profile {
+    display: flex;
+    align-items: center;
+}
+
 .notification-bar {
     background-color: #9fd8f8;
     height: 100px;
     width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.notification-bar .avatar-description {
+    cursor: pointer;
+}
+
+.notification-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: white;
+    color: #9fd8f8;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 12px;
 }
 
 .search-section {
@@ -51,6 +93,8 @@ aside {
 .search-section input {
     border: none;
     width: 100%;
+    height: 36px;
+    padding: 0 12px;
 }
 
 .search-icon {
@@ -65,7 +109,8 @@ aside {
 
 .contact-list {
     background-color: white;
-    height: 468px;
+    overflow-y: scroll;
+    height: 460px;
 }
 
 .contact-row {
@@ -73,35 +118,40 @@ aside {
     border-bottom: 1px solid rgba(245,245,245,255);
 }
 
-.contact-row img {
-    margin: 0 12px;
-}
 /* END ASIDE */
 
 /* MAIN */
+.interlocutor-description {
+    font-size: 12px;
+    color: gray;
+}
+
 .chat-space {
     background-image: url(../img/chat-background.jpg);
-    height: 100%;
+    flex-grow: 1;
 }
 
 .write-message-section {
-    flex-direction: flex-end;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 80px;
     width: 100%;
-    border: 1px solid black;
     background-color: #f2eeea;
+    position: sticky;
+    bottom: 0;
 }
 
 .write-message-section input {
     width: 750px;
     border: none;
+    height: 48px;
+    padding: 0 24px;
 }
 
 .emoji, .vocal {
     padding: 0 4px;
+    font-size: 24px;
     width: 60px;
     display: flex;
     justify-content: center;
