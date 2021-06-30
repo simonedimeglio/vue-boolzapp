@@ -5,6 +5,7 @@ body {
 }
 
 .app-container {
+    max-height: 700px;
     background-color: white;
     margin-top: 24px;
 }
@@ -18,12 +19,11 @@ main {
     background-color: #eaeaea;
     display: flex;
     flex-direction: column;
-
 }
 
 aside {
     background-color: #eaeaea;
-
+    max-height: 700px;
 }
 
 .my-profile, .interlocutor-profile {
@@ -128,7 +128,34 @@ aside {
 
 .chat-space {
     background-image: url(../img/chat-background.jpg);
-    flex-grow: 1;
+    height: 76%;
+    overflow-y: scroll;
+}
+
+.my-message-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.my-message {
+    background-color: #dcf8c0;
+    padding: 10px;
+    margin-right: 24px;
+    margin-top: 24px;
+    border-radius: 10px;
+}
+
+.interlocutor-message-container {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.interlocutor-message {
+    background-color: white;
+    padding: 10px;
+    margin-left: 24px;
+    margin-top: 24px;
+    border-radius: 10px;
 }
 
 .write-message-section {

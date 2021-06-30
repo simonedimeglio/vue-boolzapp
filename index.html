@@ -22,6 +22,7 @@
                         <!-- LEFT BAR (CONTACTS LIST)-->
                         <aside class="col-4">
                             
+                            <!-- MY PROFILE SECTION -->
                             <div class="my-profile">
 
                                 <div class="pic-and-name">
@@ -40,6 +41,7 @@
 
                             </div>
 
+                            <!-- ADD NOTIFICATION BAR -->
                             <div class="notification-bar">
                                 <div class="pic-and-name">
                                     <div class="notification-pic">
@@ -56,11 +58,13 @@
                                 </div>
                             </div>
 
+                            <!-- SEARCH BAR -->
                             <div class="search-section">
                                 <div class="search-icon"><i class="fas fa-search"></i></div>
                                 <input type="text" placeholder="Cerca o inizia una nuova chat">
                             </div>
-
+                            
+                            <!-- CONTACT LIST -->
                             <div class="contact-list">
 
                                     <div v-for="people in contacts" class="contact-row">
@@ -72,14 +76,19 @@
                                             </div>
                                         </div>
                                     </div>
+                              
 
                             </div>
 
                         </aside>
 
+
+
+
                         <!-- CHAT SECTION -->
                         <main class="col-8">
 
+                            <!-- "NAV" SECTION -->
                             <div class="interlocutor-profile">
                                 <div class="pic-and-name">
                                     <img src="./img/avatar_1.jpg" class="avatar-picture" alt="Interlocutor picture">
@@ -96,10 +105,20 @@
                                 </div>
                             </div>
 
+                            <!-- CHAT   -->
                             <div class="chat-space">
+
+                                <div class="my-message-container">
+                                   <p class="my-message">Lorem ipsum dolor sit amet</p> 
+                                </div>
+                                
+                                <div class="interlocutor-message-container">
+                                   <p class="interlocutor-message">sei proprio sicuro?</p>
+                                </div>
 
                             </div>
 
+                            <!-- BOTTOM LINE - WRITE MESSAGE SECTION -->
                             <div class="write-message-section">
                                 <div class="emoji"><i class="far fa-smile"></i></div>
                                 <input type="text" placeholder="Scrivi un messaggio">
