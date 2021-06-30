@@ -110,7 +110,7 @@ aside {
 .contact-list {
     background-color: white;
     overflow-y: scroll;
-    height: 460px;
+    height: 65%;
 }
 
 .contact-row {
