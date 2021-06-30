@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>BoolZapp</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+
+            <div class="app-container container">
+                <div id="app">
+                    <div class="row">
+
+                        <!-- LEFT BAR (CONTACTS LIST)-->
+                        <aside class="col-4">
+                            <div class="my-profile"></div>
+                            <div class="notification-bar"></div>
+                            <div class="search-section">
+                                <div class="search-icon"><i class="fas fa-search"></i></div>
+                                <input type="text" placeholder="Cerca o inizia una nuova chat">
+                            </div>
+                            <div class="contact-list">
+
+                                    <div v-for="people in contacts" class="contact-row">
+                                        <img :src="people.avatar" class="avatar-picture"/>
+                                    </div>
+
+                            </div>
+
+                        </aside>
+
+                        <!-- CHAT SECTION -->
+                        <main class="col-8">
+                            <div class="interlocutor-profile"></div>
+                            <div class="chat-space"></div>
+                            <div class="write-message-section">
+                                <div class="emoji"><i class="far fa-smile"></i></div>
+                                <input type="text" placeholder="Scrivi un messaggio">
+                                <div class="vocal"><i class="fas fa-microphone"></i></div>
+                            </div>
+                        </main>
+                    </div>
+                </div>
+            </div>
+        <script src="js/script.js"></script>
+    </body>
+</html>
