@@ -61,13 +61,13 @@
                             <!-- SEARCH BAR -->
                             <div class="search-section">
                                 <div class="search-icon"><i class="fas fa-search"></i></div>
-                                <input type="text" placeholder="Cerca o inizia una nuova chat">
+                                <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="find" @keyUp="chatSearch">
                             </div>
                             
                             <!-- CONTACT LIST -->
                             <div class="contact-list">
 
-                                    <div v-for="people in contacts" class="contact-row" @click="contact(people)">
+                                    <div v-for="people in chatSearch()" class="contact-row" @click="contact(people)">
                                         <div class="pic-and-name">
                                             <img :src="people.avatar" class="avatar-picture"/>
                                             <div class="avatar-name-container">

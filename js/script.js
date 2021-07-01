@@ -94,7 +94,7 @@ new Vue(
             counter: 0, // For contact selection (MILESTONE 2)
             showMessages: false, // To see messages (MILESTONE 2)
             myWords: '', // (MILESTONE 3)
-            
+            find: '', // For search bar (MILESTONE 4)
         },
             
         
@@ -107,25 +107,26 @@ new Vue(
                 console.log(this.counter);
               },
 
-            // Send a new message (MILESTONE 3)
+            //   ------------------------------------------------
 
-            // INTERLOCUTOR MESSAGE
+            // SEND A NEW MESSAGE (MILESTONE 3)
+
+            // Automatic interlocutor message
+            // I prepare this one for use in the next function called "newMessage"
             interlocutorWords: function() {
-
+                // set 1sec timeout 
                 setTimeout(() => {
+                    // the interlocutor text is always "ok"
                     const theInterlocutorMessage = {
                         date: '11/01/2020 12:20:03',
                         text: 'ok',
                         status: 'received' // for green container
                     }
-                    this.counter.messages.push(theInterlocutorMessage);
-                },1000);
-
+                    this.counter.messages.push(theInterlocutorMessage); // Push this object in array
+                },1000); // 1sec
             },
 
-                
-            
-            // MY NEW MESSAGE
+            // my new message
             newMessage: function() {
                 // New Object -> new message
                 const myNewMessage = {
@@ -136,7 +137,18 @@ new Vue(
                 this.myWords = ''; // To inizialize
                 this.counter.messages.push(myNewMessage); // Push this object in array
                 this.interlocutorWords(); // And now, the automatic message from the interlocutor
-            }
-        },
+            },
+
+            // SEARCH USERS FROM THE SEARCH BAR (MILESTONE 4)
+            chatSearch: function(){
+            return this.contacts.filter(item => {
+                return item.name.toLowerCase().includes(this.find.toLowerCase());
+                });
+            },
+        
+        }
     }
 );
+
+
+
