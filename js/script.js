@@ -91,20 +91,52 @@ new Vue(
                 },
             ],
 
-            counter: 0,
-            showMessages: false,
-
+            counter: 0, // For contact selection (MILESTONE 2)
+            showMessages: false, // To see messages (MILESTONE 2)
+            myWords: '', // (MILESTONE 3)
             
         },
             
         
         methods: {
+
             // Contact selection function on click (MILESTONE 2)
             contact: function(item) {
                 this.counter = item;
                 this.showMessages = true;
                 console.log(this.counter);
               },
+
+            // Send a new message (MILESTONE 3)
+
+            // INTERLOCUTOR MESSAGE
+            interlocutorWords: function() {
+
+                setTimeout(() => {
+                    const theInterlocutorMessage = {
+                        date: '11/01/2020 12:20:03',
+                        text: 'ok',
+                        status: 'received' // for green container
+                    }
+                    this.counter.messages.push(theInterlocutorMessage);
+                },1000);
+
+            },
+
+                
+            
+            // MY NEW MESSAGE
+            newMessage: function() {
+                // New Object -> new message
+                const myNewMessage = {
+                    date: '11/01/2020 12:20:02',
+                    text: this.myWords,
+                    status: 'sent' // for green container
+                }
+                this.myWords = ''; // To inizialize
+                this.counter.messages.push(myNewMessage); // Push this object in array
+                this.interlocutorWords(); // And now, the automatic message from the interlocutor
+            }
         },
     }
 );

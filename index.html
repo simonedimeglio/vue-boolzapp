@@ -125,7 +125,7 @@
                             <!-- BOTTOM LINE - WRITE MESSAGE SECTION -->
                             <div class="write-message-section">
                                 <div class="emoji"><i class="far fa-smile"></i></div>
-                                <input type="text" placeholder="Scrivi un messaggio">
+                                <input type="text" placeholder="Scrivi un messaggio" v-model="myWords" @keyup.enter="newMessage">
                                 <div class="vocal"><i class="fas fa-microphone"></i></div>
                             </div>
 
