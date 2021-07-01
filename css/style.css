@@ -10,7 +10,7 @@ body {
     margin-top: 24px;
 }
 
-i {
+i, img {
     cursor: pointer;
 }
 
@@ -116,6 +116,7 @@ aside {
 .contact-row {
     padding: 6px 0;
     border-bottom: 1px solid rgba(245,245,245,255);
+    cursor: pointer;
 }
 
 /* END ASIDE */
@@ -156,6 +157,13 @@ aside {
     margin-left: 24px;
     margin-top: 24px;
     border-radius: 10px;
+}
+
+.get-the-date {
+    color: gray;
+    font-size: 10px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .write-message-section {
