@@ -5,86 +5,87 @@ new Vue(
         el: '#app',
         
         data: { 
+            
             contacts: [
                 {
-                    name: 'Michele',
+                    name: 'Ed Sheeran',
                     avatar: './img/avatar_1.jpg',
                     visible: true,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
-                            text: 'Hai portato a spasso il cane?',
+                            text: 'Quando esce il nuovo singolo?',
                             status: 'sent'
                         },
                         {
                             date: '10/01/2020 15:50:00',
-                            text: 'Ricordati di dargli da mangiare',
+                            text: "Non vedo l'ora!",
                             status: 'sent'
                         },
                         {
                             date: '10/01/2020 16:15:22',
-                            text: 'Tutto fatto!',
+                            text: 'Ancora poco e sentirai che meraviglia!',
                             status: 'received'
                         }
                     ],
                 },
                 {
-                    name: 'Fabio',
+                    name: 'Elon Musk',
                     avatar: './img/avatar_2.jpg',
                     visible: true,
                     messages: [
                         {
                             date: '20/03/2020 16:30:00',
-                            text: 'Ciao come stai?',
+                            text: 'Ho visto il lancio del nuovo razzo, congratulazioni!',
                             status: 'sent'
                         },
                         {
                             date: '20/03/2020 16:30:55',
-                            text: 'Bene grazie! Stasera ci vediamo?',
+                            text: 'Grazie mille, sono molto soddisfatto',
                             status: 'received'
                         },
                         {
                             date: '20/03/2020 16:35:00',
-                            text: 'Mi piacerebbe ma devo andare a fare la spesa.',
+                            text: 'Sei un genio!',
                             status: 'sent'
                         }
                     ],
                 },
                 {
-                    name: 'Samuele',
+                    name: 'Bill Gates',
                     avatar: './img/avatar_3.jpg',
                     visible: true,
                     messages: [
                         {
                             date: '28/03/2020 10:10:40',
-                            text: 'La Marianna va in campagna',
+                            text: 'Hai visto Windows 11?',
                             status: 'received'
                         },
                         {
                             date: '28/03/2020 10:20:10',
-                            text: 'Sicuro di non aver sbagliato chat?',
+                            text: 'Si ma non è che mi piaccia più di tanto :(',
                             status: 'sent'
                         },
                         {
                             date: '28/03/2020 16:15:22',
-                            text: 'Ah scusa!',
+                            text: 'Anche a me in realtà...',
                             status: 'received'
                         }
                     ],
                 },
                 {
-                    name: 'Luisa',
+                    name: 'Robert Downey Jr',
                     avatar: './img/avatar_4.jpg',
                     visible: true,
                     messages: [
                         {
                             date: '10/01/2020 15:30:55',
-                            text: 'Lo sai che ha aperto una nuova pizzeria?',
+                            text: 'Prossimo film?',
                             status: 'sent'
                         },
                         {
                             date: '10/01/2020 15:50:00',
-                            text: 'Si, ma preferirei andare al cinema',
+                            text: 'Sicuramente non Avengers...',
                             status: 'received'
                         }
                     ],
@@ -95,10 +96,17 @@ new Vue(
             showMessages: false, // To see messages (MILESTONE 2)
             myWords: '', // (MILESTONE 3)
             find: '', // For search bar (MILESTONE 4)
+            notificationText: 'Attiva le notifiche Desktop', // Bonus
         },
             
         
         methods: {
+
+            // AddClass method
+            notificationOn: function() {
+                this.notificationText = 'Notifiche desktop attivate';
+                console.log('attivato');
+            },
 
             // Contact selection function on click (MILESTONE 2)
             contact: function(item) {

@@ -28,7 +28,7 @@
                                 <div class="pic-and-name">
                                     <img src="./img/avatar_io.jpg" class="avatar-picture" alt="My picture profile">
                                     <div class="avatar-name-container profile">
-                                        <div class="avatar-name">Nome Utente</div>
+                                        <div class="avatar-name">Michelle Obama</div>
                                         <div class="avatar-description"></div>
                                     </div>
                                 </div>
@@ -52,7 +52,7 @@
                                             Ricevi notifiche di nuovi messaggi
                                         </div>
                                         <div class="avatar-description">
-                                            <u>Attiva notifiche desktop</u>
+                                            <u @click="notificationOn()">{{notificationText}}</u>
                                         </div>
                                     </div>
                                 </div>
@@ -110,13 +110,13 @@
 
                                 <div :class="item.status" v-for="(item,index) in counter.messages" v-if="item.status === 'sent'">
                                     <div class="my-message-container" v-show="showMessages">
-                                        <div class="my-message">{{item.text}}<div class="get-the-date">Giorno/Mese/Anno/Ora</div></div> 
+                                        <div class="my-message">{{item.text}}<div class="get-the-date">{{item.date}}</div></div> 
                                      </div>
                                 </div>
 
                                 <div v-else>
                                     <div class="interlocutor-message-container" v-show="showMessages">
-                                        <div class="interlocutor-message">{{item.text}}<div class="get-the-date">Giorno/Mese/Anno/Ora</div></div> 
+                                        <div class="interlocutor-message">{{item.text}}<div class="get-the-date">{{item.date}}</div></div> 
                                      </div>
                                 </div>
 
