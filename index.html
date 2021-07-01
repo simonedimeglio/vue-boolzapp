@@ -67,7 +67,7 @@
                             <!-- CONTACT LIST -->
                             <div class="contact-list">
 
-                                    <div v-for="people in contacts" class="contact-row">
+                                    <div v-for="people in contacts" class="contact-row" @click="contact(people)">
                                         <div class="pic-and-name">
                                             <img :src="people.avatar" class="avatar-picture"/>
                                             <div class="avatar-name-container">
@@ -91,9 +91,9 @@
                             <!-- "NAV" SECTION -->
                             <div class="interlocutor-profile">
                                 <div class="pic-and-name">
-                                    <img src="./img/avatar_1.jpg" class="avatar-picture" alt="Interlocutor picture">
+                                    <img :src="counter.avatar" class="avatar-picture" alt="Interlocutor picture">
                                     <div class="avatar-name-container">
-                                        <div class="avatar-name-container">Michele</div>
+                                        <div class="avatar-name-container">{{counter.name}}</div>
                                         <div class="avatar-description interlocutor-description">Ultimo accesso oggi alle</div> 
                                     </div>
                                 </div>
@@ -108,12 +108,16 @@
                             <!-- CHAT   -->
                             <div class="chat-space">
 
-                                <div class="my-message-container">
-                                   <p class="my-message">Lorem ipsum dolor sit amet</p> 
+                                <div :class="item.status" v-for="(item,index) in counter.messages" v-if="item.status === 'sent'">
+                                    <div class="my-message-container" v-show="showMessages">
+                                        <div class="my-message">{{item.text}}<div class="get-the-date">Giorno/Mese/Anno/Ora</div></div> 
+                                     </div>
                                 </div>
-                                
-                                <div class="interlocutor-message-container">
-                                   <p class="interlocutor-message">sei proprio sicuro?</p>
+
+                                <div v-else>
+                                    <div class="interlocutor-message-container" v-show="showMessages">
+                                        <div class="interlocutor-message">{{item.text}}<div class="get-the-date">Giorno/Mese/Anno/Ora</div></div> 
+                                     </div>
                                 </div>
 
                             </div>

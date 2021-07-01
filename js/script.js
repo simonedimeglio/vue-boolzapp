@@ -89,13 +89,22 @@ new Vue(
                         }
                     ],
                 },
-            ]
+            ],
+
+            counter: 0,
+            showMessages: false,
+
             
         },
             
         
         methods: {
-
+            // Contact selection function on click (MILESTONE 2)
+            contact: function(item) {
+                this.counter = item;
+                this.showMessages = true;
+                console.log(this.counter);
+              },
         },
     }
 );
