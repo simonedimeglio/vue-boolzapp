@@ -97,6 +97,7 @@ new Vue(
             myWords: '', // (MILESTONE 3)
             find: '', // For search bar (MILESTONE 4)
             notificationText: 'Attiva le notifiche Desktop', // Bonus
+            lastAccess: new Date().toLocaleString(),
         },
             
         
@@ -122,23 +123,23 @@ new Vue(
             // Automatic interlocutor message
             // I prepare this one for use in the next function called "newMessage"
             interlocutorWords: function() {
-                // set 1sec timeout 
+                // set 2sec timeout 
                 setTimeout(() => {
                     // the interlocutor text is always "ok"
                     const theInterlocutorMessage = {
-                        date: '11/01/2020 12:20:03',
+                        date: new Date().toLocaleString(),
                         text: 'ok',
                         status: 'received' // for green container
                     }
                     this.counter.messages.push(theInterlocutorMessage); // Push this object in array
-                },1000); // 1sec
+                },2000); // 2sec
             },
 
             // my new message
             newMessage: function() {
                 // New Object -> new message
                 const myNewMessage = {
-                    date: '11/01/2020 12:20:02',
+                    date: new Date().toLocaleString(),
                     text: this.myWords,
                     status: 'sent' // for green container
                 }

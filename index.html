@@ -34,7 +34,7 @@
                                 </div>
 
                                 <div class="top-bar-icons">
-                                    <i class="fas fa-circle-notch"></i>
+                                    <i class="fas fa-circle-notch" @click="darkMode()"></i>
                                     <i class="fas fa-comment-alt"></i>
                                     <i class="fas fa-ellipsis-v"></i>
                                 </div>
@@ -94,7 +94,7 @@
                                     <img :src="counter.avatar" class="avatar-picture" alt="Interlocutor picture">
                                     <div class="avatar-name-container">
                                         <div class="avatar-name-container">{{counter.name}}</div>
-                                        <div class="avatar-description interlocutor-description">Ultimo accesso oggi alle</div> 
+                                        <div class="avatar-description interlocutor-description">Ultimo accesso {{lastAccess}}</div> 
                                     </div>
                                 </div>
 
