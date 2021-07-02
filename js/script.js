@@ -15,17 +15,20 @@ new Vue(
                         {
                             date: '10/01/2020 15:30:55',
                             text: 'Quando esce il nuovo singolo?',
-                            status: 'sent'
+                            status: 'sent',
+                            showMenu: false
                         },
                         {
                             date: '10/01/2020 15:50:00',
                             text: "Non vedo l'ora!",
-                            status: 'sent'
+                            status: 'sent',
+                            showMenu: false
                         },
                         {
                             date: '10/01/2020 16:15:22',
                             text: 'Ancora poco e sentirai che meraviglia!',
-                            status: 'received'
+                            status: 'received',
+                            showMenu: false
                         }
                     ],
                 },
@@ -37,17 +40,20 @@ new Vue(
                         {
                             date: '20/03/2020 16:30:00',
                             text: 'Ho visto il lancio del nuovo razzo, congratulazioni!',
-                            status: 'sent'
+                            status: 'sent',
+                            showMenu: false
                         },
                         {
                             date: '20/03/2020 16:30:55',
                             text: 'Grazie mille, sono molto soddisfatto',
-                            status: 'received'
+                            status: 'received',
+                            showMenu: false
                         },
                         {
                             date: '20/03/2020 16:35:00',
                             text: 'Sei un genio!',
-                            status: 'sent'
+                            status: 'sent',
+                            showMenu: false
                         }
                     ],
                 },
@@ -59,17 +65,20 @@ new Vue(
                         {
                             date: '28/03/2020 10:10:40',
                             text: 'Hai visto Windows 11?',
-                            status: 'received'
+                            status: 'received',
+                            showMenu: false
                         },
                         {
                             date: '28/03/2020 10:20:10',
                             text: 'Si ma non è che mi piaccia più di tanto :(',
-                            status: 'sent'
+                            status: 'sent',
+                            showMenu: false
                         },
                         {
                             date: '28/03/2020 16:15:22',
                             text: 'Anche a me in realtà...',
-                            status: 'received'
+                            status: 'received',
+                            showMenu: false
                         }
                     ],
                 },
@@ -81,12 +90,14 @@ new Vue(
                         {
                             date: '10/01/2020 15:30:55',
                             text: 'Prossimo film?',
-                            status: 'sent'
+                            status: 'sent',
+                            showMenu: false
                         },
                         {
                             date: '10/01/2020 15:50:00',
                             text: 'Sicuramente non Avengers...',
-                            status: 'received'
+                            status: 'received',
+                            showMenu: false
                         }
                     ],
                 },
@@ -98,13 +109,15 @@ new Vue(
             find: '', // For search bar (MILESTONE 4)
             notificationText: 'Attiva le notifiche Desktop', // Bonus
             lastAccess: new Date().toLocaleString(), // Date 
+            menuVisibility : false, // For options menu (info & delete) (MILESTONE 5)
+            selectedMessage : '', // For message selection (MILESTONE 5)
         },
             
         
         methods: {
+            // MILESTONE 1 AND GENERAL METHODS
 
             //Get the current date
-
             getCurrentDate: function() {
                 const dateTimeNow = dayjs();
                 return dateTimeString = dateTimeNow.format("DD/MM/YYYY HH:mm:ss");
@@ -113,7 +126,7 @@ new Vue(
             // AddClass method
             notificationOn: function() {
                 this.notificationText = 'Notifiche desktop attivate';
-                console.log('attivato');
+                console.log('Notifiche attivate');
             },
 
             // Contact selection function on click (MILESTONE 2)
@@ -137,7 +150,8 @@ new Vue(
                     const theInterlocutorMessage = {
                         date: this.getCurrentDate(),
                         text: 'Ok',
-                        status: 'received' // for green container
+                        status: 'received', // for green container
+                        showMenu: false
                     }
                     this.counter.messages.push(theInterlocutorMessage); // Push this object in array
                 },2000); // 2sec
@@ -149,7 +163,8 @@ new Vue(
                 const myNewMessage = {
                     date: this.getCurrentDate(),
                     text: this.myWords,
-                    status: 'sent' // for green container
+                    status: 'sent',  // for green container
+                    showMenu: false
                 }
                 this.myWords = ''; // To inizialize
                 this.counter.messages.push(myNewMessage); // Push this object in array
@@ -163,6 +178,19 @@ new Vue(
                 });
             },
 
+            //   ------------------------------------------------
+
+            // DELETE MESSAGE (MILESTONE 5)
+
+            letMenuVisible: function(elem){ // apro/chiudo menu dropdown
+                this.selectedMessage = elem;
+                this.menuVisibility = !this.menuVisibility;            
+            },    
+
+            deleteMessage: function(index){ //menu dropdown --> cancella messaggio
+                const messages = this.counter['messages'];
+                messages.splice(index,1);               
+            },
         }
     }
 );

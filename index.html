@@ -1,140 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>BoolZapp</title>
-        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com"> 
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
-        <link rel="stylesheet" href="css/style.css">
-    </head>
 
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoolZapp</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
 
-            <div class="app-container container">
-                <div id="app">
-                    <div class="row">
+<body>
 
-                        <!-- LEFT BAR (CONTACTS LIST)-->
-                        <aside class="col-4">
-                            
-                            <!-- MY PROFILE SECTION -->
-                            <div class="my-profile">
+    <div class="app-container container">
+        <div id="app">
+            <div class="row">
 
-                                <div class="pic-and-name">
-                                    <img src="./img/avatar_io.jpg" class="avatar-picture" alt="My picture profile">
-                                    <div class="avatar-name-container profile">
-                                        <div class="avatar-name">Michelle Obama</div>
-                                        <div class="avatar-description"></div>
-                                    </div>
-                                </div>
+                <!-- LEFT BAR (CONTACTS LIST)-->
+                <aside class="col-4">
 
-                                <div class="top-bar-icons">
-                                    <i class="fas fa-circle-notch"></i>
-                                    <i class="fas fa-comment-alt"></i>
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </div>
+                    <!-- MY PROFILE SECTION -->
+                    <div class="my-profile">
 
+                        <div class="pic-and-name">
+                            <img src="./img/avatar_io.jpg" class="avatar-picture" alt="My picture profile">
+                            <div class="avatar-name-container profile">
+                                <div class="avatar-name">Michelle Obama</div>
+                                <div class="avatar-description"></div>
                             </div>
+                        </div>
 
-                            <!-- ADD NOTIFICATION BAR -->
-                            <div class="notification-bar">
-                                <div class="pic-and-name">
-                                    <div class="notification-pic">
-                                        <i class="fas fa-bell-slash"></i>
-                                    </div>
-                                    <div class="avatar-name-container">
-                                        <div class="avatar-name">
-                                            Ricevi notifiche di nuovi messaggi
+                        <div class="top-bar-icons">
+                            <i class="fas fa-circle-notch"></i>
+                            <i class="fas fa-comment-alt"></i>
+                            <i class="fas fa-ellipsis-v"></i>
+                        </div>
+
+                    </div>
+
+                    <!-- ADD NOTIFICATION BAR -->
+                    <div class="notification-bar">
+                        <div class="pic-and-name">
+                            <div class="notification-pic">
+                                <i class="fas fa-bell-slash"></i>
+                            </div>
+                            <div class="avatar-name-container">
+                                <div class="avatar-name">
+                                    Ricevi notifiche di nuovi messaggi
+                                </div>
+                                <div class="-description">
+                                    <u @click="notificationOn()">{{notificationText}}</u>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SEARCH BAR -->
+                    <div class="search-section">
+                        <div class="search-icon"><i class="fas fa-search"></i></div>
+                        <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="find"
+                            @keyUp="chatSearch">
+                    </div>
+
+                    <!-- CONTACT LIST -->
+                    <div class="contact-list">
+
+                        <div v-for="people in chatSearch()" class="contact-row" @click="contact(people)">
+                            <div class="pic-and-name">
+                                <img :src="people.avatar" class="avatar-picture" />
+                                <div class="avatar-name-container">
+                                    <div class="avatar-name">{{people.name}}</div>
+                                    <div class="avatar-description">Data e ora ultimo messaggio: </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </aside>
+
+
+
+
+                <!-- CHAT SECTION -->
+                <main class="col-8">
+
+                    <!-- "NAV" SECTION -->
+                    <div class="interlocutor-profile">
+                        <div class="pic-and-name">
+                            <img :src="contacts[0].avatar" class="avatar-picture" alt="Interlocutor picture"
+                                v-if="counter === 0">
+                            <img :src="counter.avatar" class="avatar-picture" alt="Interlocutor picture" v-else>
+                            <div class="avatar-name-container">
+                                <div class="avatar-name-container" v-if="counter === 0">{{contacts[0].name}}</div>
+                                <div class="avatar-name-container" v-else>{{counter.name}}</div>
+                                <div class="avatar-description interlocutor-description">Ultimo accesso {{lastAccess}}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="top-bar-icons">
+                            <i class="fas fa-search"></i>
+                            <i class="fas fa-paperclip"></i>
+                            <i class="fas fa-ellipsis-v"></i>
+                        </div>
+                    </div>
+
+                    <!-- CHAT   -->
+                    <div class="chat-space">
+
+                        <div v-if="counter === 0">
+                            <div :class="item.status" v-for="(item,index) in counter.messages"
+                                v-if="item.status === 'sent'">
+                                <div class="my-message-container">
+
+                                    <div class="my-message">
+                                        {{contacts[0].text}}
+                                        <span class="message-options">
+                                            <i class="mod fas fa-chevron-down" @click="letMenuVisible(item)"></i>
+                                        </span>
+
+                                        <div class="get-the-date">
+                                            {{contacts[0].date}}
                                         </div>
-                                        <div class="avatar-description">
-                                            <u @click="notificationOn()">{{notificationText}}</u>
+                                        <div class="menu-container">
+                                            <div v-if="item === selectedMessage && menuVisibility" class="options-menu">
+                                                <p>Info messaggio</p>
+                                                <p @click="deleteMessage(index)">Cancella messaggio</p>
+                                            </div>
                                         </div>
+
                                     </div>
                                 </div>
+
                             </div>
 
-                            <!-- SEARCH BAR -->
-                            <div class="search-section">
-                                <div class="search-icon"><i class="fas fa-search"></i></div>
-                                <input type="text" placeholder="Cerca o inizia una nuova chat" v-model="find" @keyUp="chatSearch">
-                            </div>
-                            
-                            <!-- CONTACT LIST -->
-                            <div class="contact-list">
+                            <div v-else>
+                                <div class="interlocutor-message-container" v-show="showMessages">
+                                    <div class="interlocutor-message">
+                                        {{contacts[0].text}}
+                                        <span class="message-options">
+                                            <i class="mod fas fa-chevron-down" @click="letMenuVisible(item)"></i>
+                                        </span>
 
-                                    <div v-for="people in chatSearch()" class="contact-row" @click="contact(people)">
-                                        <div class="pic-and-name">
-                                            <img :src="people.avatar" class="avatar-picture"/>
-                                            <div class="avatar-name-container">
-                                                <div class="avatar-name">{{people.name}}</div>
-                                                <div class="avatar-description"></div>
+                                        <div class="get-the-date">
+                                            {{contacts[0].date}}
+                                        </div>
+                                        <div class="menu-container">
+                                            <div v-if="item === selectedMessage && menuVisibility" class="options-menu">
+                                                <p>Info messaggio</p>
+                                                <p @click="deleteMessage(index)">Cancella messaggio</p>
                                             </div>
                                         </div>
                                     </div>
-                              
-
+                                </div>
                             </div>
 
-                        </aside>
+
+                        </div>
 
 
+                        <!-- .......................................................................................... -->
+                        <div :class="item.status" v-for="(item,index) in counter.messages"
+                            v-if="item.status === 'sent'">
+                            <div class="my-message-container">
 
+                                <div class="my-message">
+                                    {{item.text}}
+                                    <span class="message-options">
+                                        <i class="mod fas fa-chevron-down" @click="letMenuVisible(item)"></i>
+                                    </span>
 
-                        <!-- CHAT SECTION -->
-                        <main class="col-8">
+                                    <div class="get-the-date">
+                                        {{item.date}}
+                                    </div>
+                                    <div class="menu-container">
+                                        <div v-if="item === selectedMessage && menuVisibility" class="options-menu">
+                                            <p>Info messaggio</p>
+                                            <p @click="deleteMessage(index)">Cancella messaggio</p>
+                                        </div>
+                                    </div>
 
-                            <!-- "NAV" SECTION -->
-                            <div class="interlocutor-profile">
-                                <div class="pic-and-name">
-                                    <img :src="counter.avatar" class="avatar-picture" alt="Interlocutor picture">
-                                    <div class="avatar-name-container">
-                                        <div class="avatar-name-container">{{counter.name}}</div>
-                                        <div class="avatar-description interlocutor-description">Ultimo accesso {{lastAccess}}</div> 
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div v-else>
+                            <div class="interlocutor-message-container" v-show="showMessages">
+                                <div class="interlocutor-message">
+                                    {{item.text}}
+                                    <span class="message-options">
+                                        <i class="mod fas fa-chevron-down" @click="letMenuVisible(item)"></i>
+                                    </span>
+
+                                    <div class="get-the-date">
+                                        {{item.date}}
+                                    </div>
+                                    <div class="menu-container">
+                                        <div v-if="item === selectedMessage && menuVisibility" class="options-menu">
+                                            <p>Info messaggio</p>
+                                            <p @click="deleteMessage(index)">Cancella messaggio</p>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="top-bar-icons">
-                                    <i class="fas fa-search"></i>
-                                    <i class="fas fa-paperclip"></i>
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </div>
                             </div>
+                        </div>
 
-                            <!-- CHAT   -->
-                            <div class="chat-space">
 
-                                <div :class="item.status" v-for="(item,index) in counter.messages" v-if="item.status === 'sent'">
-                                    <div class="my-message-container" v-show="showMessages">
-                                        <div class="my-message">{{item.text}}<div class="get-the-date">{{item.date}}</div></div> 
-                                     </div>
-                                </div>
-
-                                <div v-else>
-                                    <div class="interlocutor-message-container" v-show="showMessages">
-                                        <div class="interlocutor-message">{{item.text}}<div class="get-the-date">{{item.date}}</div></div> 
-                                     </div>
-                                </div>
-
-                            </div>
-
-                            <!-- BOTTOM LINE - WRITE MESSAGE SECTION -->
-                            <div class="write-message-section">
-                                <div class="emoji"><i class="far fa-smile"></i></div>
-                                <input type="text" placeholder="Scrivi un messaggio" v-model="myWords" @keyup.enter="newMessage">
-                                <div class="vocal"><i class="fas fa-microphone"></i></div>
-                            </div>
-
-                        </main>
 
                     </div>
-                </div>
+
+                    <!-- BOTTOM LINE - WRITE MESSAGE SECTION -->
+                    <div class="write-message-section">
+                        <div class="emoji"><i class="far fa-smile"></i></div>
+                        <input type="text" placeholder="Scrivi un messaggio" v-model="myWords"
+                            @keyup.enter="newMessage">
+                        <div class="vocal"><i class="fas fa-microphone"></i></div>
+                    </div>
+
+                </main>
+
             </div>
-        <script src="js/script.js"></script>
-    </body>
+        </div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
 </html>
