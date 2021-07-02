@@ -97,11 +97,18 @@ new Vue(
             myWords: '', // (MILESTONE 3)
             find: '', // For search bar (MILESTONE 4)
             notificationText: 'Attiva le notifiche Desktop', // Bonus
-            lastAccess: new Date().toLocaleString(),
+            lastAccess: new Date().toLocaleString(), // Date 
         },
             
         
         methods: {
+
+            //Get the current date
+
+            getCurrentDate: function() {
+                const dateTimeNow = dayjs();
+                return dateTimeString = dateTimeNow.format("DD/MM/YYYY HH:mm:ss");
+            },
 
             // AddClass method
             notificationOn: function() {
@@ -126,9 +133,10 @@ new Vue(
                 // set 2sec timeout 
                 setTimeout(() => {
                     // the interlocutor text is always "ok"
+                    
                     const theInterlocutorMessage = {
-                        date: new Date().toLocaleString(),
-                        text: 'ok',
+                        date: this.getCurrentDate(),
+                        text: 'Ok',
                         status: 'received' // for green container
                     }
                     this.counter.messages.push(theInterlocutorMessage); // Push this object in array
@@ -139,7 +147,7 @@ new Vue(
             newMessage: function() {
                 // New Object -> new message
                 const myNewMessage = {
-                    date: new Date().toLocaleString(),
+                    date: this.getCurrentDate(),
                     text: this.myWords,
                     status: 'sent' // for green container
                 }
@@ -154,7 +162,7 @@ new Vue(
                 return item.name.toLowerCase().includes(this.find.toLowerCase());
                 });
             },
-        
+
         }
     }
 );
